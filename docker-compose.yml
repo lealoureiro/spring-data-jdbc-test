@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    container_name: spring-jdbc-database
+    image: mysql:8.0.30
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=customer-notes-db
+    ports:
+      - '3306:3306'
+    networks:
+      - spring-jdbc-test-network
+  app:
+    container_name: spring-jdbc-app
+    image: spring-data-jdbc-test:0.0.1-SNAPSHOT
+    ports:
+      - '8080:8080'
+    networks:
+      - spring-jdbc-test-network
+networks:
+  spring-jdbc-test-network:
