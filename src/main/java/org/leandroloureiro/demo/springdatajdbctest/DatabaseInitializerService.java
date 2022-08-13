@@ -4,26 +4,23 @@ import org.leandroloureiro.demo.springdatajdbctest.model.Customer;
 import org.leandroloureiro.demo.springdatajdbctest.model.Note;
 import org.leandroloureiro.demo.springdatajdbctest.repositories.CustomerRepository;
 import org.leandroloureiro.demo.springdatajdbctest.repositories.NoteRepository;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import static java.util.Arrays.asList;
 
-@Component
-public class ApplicationInitializer implements ApplicationRunner {
+@Service
+public class DatabaseInitializerService {
 
     private final CustomerRepository customerRepository;
     private final NoteRepository noteRepository;
 
-    public ApplicationInitializer(CustomerRepository customerRepository,
+    public DatabaseInitializerService(CustomerRepository customerRepository,
                                   NoteRepository noteRepository) {
         this.customerRepository = customerRepository;
         this.noteRepository = noteRepository;
     }
 
-    @Override
-    public void run(ApplicationArguments args) {
+    public void initDatabase() {
 
         Customer customer1 = new Customer("Leandro Loureiro");
         Customer customer2 = new Customer("Ada Lovelace");
